@@ -45,4 +45,5 @@ Currently practising repositories, commits, branches, merging, remotes, fetching
 \## Learning Approach
 
 Build the platform incrementally, understand each tool, and document the practical work as the project evolves.
+CloudForge is maintained as a continuous hands-on learning project.
 
