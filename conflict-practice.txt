@@ -1,1 +1,1 @@
-CloudForge deployment: version 1
+CloudForge deployment: version 2
