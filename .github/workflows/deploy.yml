@@ -19,6 +19,9 @@ jobs:
 
       - name: Check Homepage
         run: test -s apps/index.html
+
+      - name: Validate Website Directory
+        run: test -d apps
       
       - name: Prepare Website
         run: |
