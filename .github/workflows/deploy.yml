@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    workflow-dispatch:
+  workflow-dispatch:
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Check Out Repository
-        uses: actions/checkoutv@6
+        uses: actions/checkout@v6
 
       - name: Check Homepage
         run: test -s apps/index.html
@@ -27,10 +27,10 @@ jobs:
           test -s public/index.html
 
       - name: Configure Github pages
-        uses: actions/configure-page@v5
+        uses: actions/configure-pages@v5
 
       - name: Upload Website Artifact
-        uses: actions/upload-page-artifact@v4
+        uses: actions/upload-pages-artifact@v4
         with:
           path: public/
   
