@@ -1,0 +1,32 @@
+stages:
+  - test
+  - build
+  - deploy
+
+check-homepage:
+  stage: test
+  script:
+    - test -s apps/index.html
+
+package-site:
+  stage: build
+  script:
+    - test -s apps/index.html
+    - mkdir -p public/
+    - cp -r apps/. /public/
+    - test -s public/index.html
+  artifacts:
+    paths:
+      - public/
+
+deploy-pages:
+  stage: deploy
+  dependencies:
+    - package-site
+  script:
+    - test -s public/index.html
+  pages:
+    publish: public
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+       
