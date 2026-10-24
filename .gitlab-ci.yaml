@@ -28,5 +28,4 @@ deploy-pages:
   pages:
     publish: public
   rules:
-    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
-       
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH" 
