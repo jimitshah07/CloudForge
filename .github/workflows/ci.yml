@@ -27,3 +27,6 @@ jobs:
       - name: HTML validation
         run: |
           npx --yes html-validate apps/index.html
+      
+      - name: Show Application environment
+        run: echo "Environment is $APP_ENV"
