@@ -11,6 +11,8 @@ on:
 jobs:
   check-homepage:
     runs-on : ubuntu-latest
+    env:
+      APP_ENV: development
 
     steps:
       - name: Check Out Repository
