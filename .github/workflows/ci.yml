@@ -11,6 +11,8 @@ on:
 jobs:
   check-homepage:
     runs-on : ubuntu-latest
+    outputs:
+      result: ${{ steps.check.outputs.status }}
     env:
       APP_ENV: development
 
@@ -19,7 +21,10 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Check Homepage
-        run : test -s apps/index.html
+        id: check
+        run : |
+          test -s apps/index.html
+          echo "status=success" >> "$GITHUB_OUTPUT"
 
       - name: Check Directory
         run: test -d apps
@@ -47,4 +52,4 @@ jobs:
     needs: check-homepage
     steps:
       - name: Show Report
-        run: echo "CloudForge checks completed Successfully"
+        run: echo "Homepage check result is ${{ needs.check-homepage.outputs.result }}"
