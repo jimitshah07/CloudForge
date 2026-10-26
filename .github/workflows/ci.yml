@@ -11,13 +11,20 @@ on:
 jobs:
   check-homepage:
     runs-on : ubuntu-latest
+    outputs:
+      result: ${{ steps.check.outputs.status }}
+    env:
+      APP_ENV: development
 
     steps:
       - name: Check Out Repository
         uses: actions/checkout@v6
 
       - name: Check Homepage
-        run : test -s apps/index.html
+        id: check
+        run : |
+          test -s apps/index.html
+          echo "status=success" >> "$GITHUB_OUTPUT"
 
       - name: Check Directory
         run: test -d apps
@@ -25,3 +32,24 @@ jobs:
       - name: HTML validation
         run: |
           npx --yes html-validate apps/index.html
+      
+      - name: Show Application environment
+        run: echo "Environment is $APP_ENV"
+      
+      - name: Verify Secret Exists
+        env:
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+        run: |
+          if [ -n "$DEMO_SECRET" ]; then
+            echo "Secret is Configured"
+          else
+            echo "Secret is not configured"
+            exit 1
+          fi
+      
+  report:
+    runs-on: ubuntu-latest
+    needs: check-homepage
+    steps:
+      - name: Show Report
+        run: echo "Homepage check result is ${{ needs.check-homepage.outputs.result }}"
