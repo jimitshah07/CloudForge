@@ -25,7 +25,8 @@ jobs:
       
       - name: HTML validation
         run: |
-          npx --yes html-validate apps/index.html
+          # npx --yes html-validate apps/index.html
+          this-command-should-fail
       
       - name: Prepare Website
         run: |
