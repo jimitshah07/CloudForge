@@ -30,3 +30,14 @@ jobs:
       
       - name: Show Application environment
         run: echo "Environment is $APP_ENV"
+      
+      - name: Verify Secret Exists
+        env:
+          DEMO_SECRET: ${{secrets.DEMO_SECRET}}
+        run: |
+          if [ -n "DEMO_SECRET"]; then
+            echo "Secret is Configured"
+          else
+            echo "Secret is not configured"
+            exit 1
+          fi
