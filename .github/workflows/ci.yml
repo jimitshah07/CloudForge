@@ -15,3 +15,11 @@ jobs:
 
       - name: Check Homepage
         run : test -s apps/index.html
+
+      - name: Check Directory
+        run: test -d apps
+      
+      - name: HTML validation
+        run: |
+          npx --yes html-validate apps/index.html
+          
