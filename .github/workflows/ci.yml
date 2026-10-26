@@ -33,9 +33,9 @@ jobs:
       
       - name: Verify Secret Exists
         env:
-          DEMO_SECRET: ${{secrets.DEMO_SECRET}}
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
         run: |
-          if [ -n "DEMO_SECRET"]; then
+          if [ -n "$DEMO_SECRET"]; then
             echo "Secret is Configured"
           else
             echo "Secret is not configured"
