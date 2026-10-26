@@ -23,6 +23,10 @@ jobs:
       - name: Validate Website Directory
         run: test -d apps
       
+      - name: HTML validation
+        run: |
+          npx --yes html-validate apps/index.html
+      
       - name: Prepare Website
         run: |
           mkdir -p public
