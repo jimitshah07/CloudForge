@@ -37,7 +37,7 @@ jobs:
         run: |
           if [ -n "$DEMO_SECRET" ]; then
             echo "Secret is Configured"
-            echo "$DEMO-SECRET"
+            echo "secrets.DEMO_SECRET"
           else
             echo "Secret is not configured"
             exit 1
